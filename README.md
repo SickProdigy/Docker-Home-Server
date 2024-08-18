@@ -1,23 +1,31 @@
-# home-server
+# Home-Server Development
+## This is my docker home server development repo.
 
-This repo is for updates and changes to my home server. This will mainly be for testing until I figure out how to use git again. May back up my whole docker setup using this.
+For the past 4-5 years I've been testing multiple docker containers. Here is a list of anything worth having in docker imo.. Few things may be left off or not currently maintained. I plan to add folders and update docker-compose.yml for each container later. At least for backup purposes. Some currently have private info so will need to refine those first.
 
-Docker Containers
+
+Docker containers in my testing library:
 - adguard
+- amule
 - audiobookshelf
 - authelia
 - bazarr
 - beets
 - calibre
 - calibre-web
+- code-server
 - ddclient
 - deemix
 - deluge
 - dillinger
+- docker-compose.yml
 - doublecommander
+- elasticsearch
+- filebrowser
 - flaresolverr
 - gitea
 - glances
+- gmod
 - grafana
 - headphones
 - heimdall
@@ -26,32 +34,43 @@ Docker Containers
 - homebridge
 - immich
 - jackett
+- jellyfin
 - joplin
 - jupyter
 - lazylibrarian
+- libation
 - lidarr
-- lidarr-on-steroids
 - mailcow
 - mailserver
 - mariadb
-- mastadon
+- mastodon
 - mealie
+- mediacms
+- minecraft-paper_itzg
+- mkvtoolnix
 - mongodb
 - mosquitto-eclipse
+- musicbrainz
 - n8n
 - navidrome
 - netbootxyz
 - nginxproxymanager
 - node-red
+- nostr-relay
+- notifiarr
 - nzbget
 - ombi
+- open-assistant
 - openbooks
 - organizr
 - paperless-ng
 - phpmyadmin
+- picard
 - pidgin
 - plex
+- plex-image-cleanup
 - plex-meta-manager
+- pms-docker
 - podgrab
 - portainer
 - portainer-be
@@ -62,22 +81,27 @@ Docker Containers
 - radarr
 - rainloop
 - readarr
+- recyclarr
 - requestrr
 - sabnzbd
 - shoutrrr
 - sonarr
 - soulseek
-- swag-letsencrypt_duckdns
+- sptnr
+- swag
 - tautulli
 - tdarr
 - tellytv
 - traefik
+- tubearchivist
 - tvheadend
 - unpackerr
+- vscodium
 - watchtower
 - webgrabplus
 - wireguard
 - wireshark
-- youtube-dl-material
+- xbackbone
+- xteve
 
 Most of these I have used, give or take a few. Around 40 or so active currently. Will format those later
