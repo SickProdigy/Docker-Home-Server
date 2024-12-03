@@ -5,28 +5,33 @@ For the past 4-5 years I've been testing multiple docker containers. Here is a l
 
 
 Docker containers in my testing library:
-- adguard
+- - adguard
 - amule
+- apprise
 - audiobookshelf
 - authelia
 - bazarr
 - beets
 - calibre
 - calibre-web
+- chd-converter
 - code-server
 - ddclient
 - deemix
 - deluge
 - dillinger
-- docker-compose.yml
 - doublecommander
 - elasticsearch
 - filebrowser
 - flaresolverr
+- gamevault
+- gameyfin
 - gitea
 - glances
+- gluetun
 - gmod
 - grafana
+- grifter
 - headphones
 - heimdall
 - homarr
@@ -34,15 +39,18 @@ Docker containers in my testing library:
 - homebridge
 - immich
 - jackett
+- jdownloader
 - jellyfin
 - joplin
 - jupyter
+- kometa
 - lazylibrarian
 - libation
 - lidarr
 - mailcow
 - mailserver
 - mariadb
+- mastadon
 - mastodon
 - mealie
 - mediacms
@@ -69,12 +77,12 @@ Docker containers in my testing library:
 - pidgin
 - plex
 - plex-image-cleanup
-- plex-meta-manager
 - pms-docker
 - podgrab
 - portainer
 - portainer-be
 - portainer-ce
+- postgres_data
 - prometheus
 - prowlarr
 - qbittorrent
@@ -83,25 +91,36 @@ Docker containers in my testing library:
 - readarr
 - recyclarr
 - requestrr
+- romm
+- romvault
 - sabnzbd
 - shoutrrr
 - sonarr
 - soulseek
+- spotify-playlist-generator
+- spotisub
 - sptnr
-- swag
+- swag-letsencrypt
+- swag-letsencrypt_duckdns
 - tautulli
 - tdarr
 - tellytv
 - traefik
+- trilium
 - tubearchivist
 - tvheadend
 - unpackerr
 - vscodium
 - watchtower
+- web-dev-compose.yml
 - webgrabplus
+- wg-easy
+- whisper-webui
 - wireguard
 - wireshark
 - xbackbone
 - xteve
+- youtube-dl-material
+- youtube-dl-server
 
 Most of these I have used, give or take a few. Around 40 or so active currently. Will format those later
