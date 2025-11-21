@@ -1,0 +1,27 @@
+---
+#version: "2.1"    # Phased/outdated. Not needed if running portainer or newest version of compose
+services:
+  deluge:
+    image: lscr.io/linuxserver/deluge:latest
+    container_name: deluge
+    environment:
+      - PUID=1000
+      - PGID=1006
+      - TZ=America/New_York
+      - DELUGE_LOGLEVEL=error #optional
+    volumes:
+      - /docker-containers/deluge:/config
+      - /unsorted/deluge:/downloads
+    ports:
+      - 8112:8112
+      - 12881:12881
+      - 12881:12881/udp
+    restart: unless-stopped
+    stdin_open: true    # to attach to containers
+    tty: true           # also used to attach to containers
+    networks:           # Specify network for container
+      - homelab
+networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
+  homelab:
+    name: homelab      # Networks can also be given a custom name
+    external: true      # This option causes compose to join the above network instead of making a _default one (supposedly)
