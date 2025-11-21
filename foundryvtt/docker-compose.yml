@@ -1,0 +1,29 @@
+---
+services:
+  foundry:
+    image: felddy/foundryvtt:13
+    container_name: foundryvtt
+    hostname: foundry.example.com
+    volumes:
+      - type: bind
+        source: /docker-containers/foundryvtt/data
+        target: /data
+    environment:
+      - FOUNDRY_PASSWORD=ChangeMe123foundry
+      - FOUNDRY_USERNAME=yourusername
+      - FOUNDRY_ADMIN_KEY=ChangeMe123
+    ports:
+      - target: 30000
+        published: 30000
+        protocol: tcp
+    stdin_open: true    # to attach to containers
+    tty: true           # also used to attach to containers
+#    network_mode: service:wireguard     # To run through vpn service container, in turn UI port must be forwarded inside vpn. No local access unless otherwise defined
+    networks:           # Specify network for container
+      homelab:
+        aliases:
+          - foundry # adding multiple aliases under certain network
+networks:    # specify the network 2x. In service, and in this tag area..
+  homelab:
+    name: homelab      # Networks can also be given a custom name
+    external: true # This option causes compose to join the above network instead of making a _default one
