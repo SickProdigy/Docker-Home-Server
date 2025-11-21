@@ -1,0 +1,25 @@
+---
+version: "3.8"
+services:
+  authelia:
+    container_name: authelia
+    image: docker.io/authelia/authelia:latest
+    restart: unless-stopped
+    networks:
+      homelab:
+        aliases: [auth]
+    expose:
+      - 9091
+    environment:
+      TZ: 'America/New_York'
+      AUTHELIA_JWT_SECRET_FILE: /secrets/JWT_SECRET
+      AUTHELIA_SESSION_SECRET_FILE: /secrets/SESSION_SECRET
+      AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE: /secrets/STORAGE_PASSWORD
+      AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE: /secrets/STORAGE_ENCRYPTION_KEY
+    volumes:
+      - /docker-containers/authelia/config:/config
+      - /docker-containers/authelia/secrets:/secrets
+networks:
+  homelab:
+    external: true
+    name: homelab
