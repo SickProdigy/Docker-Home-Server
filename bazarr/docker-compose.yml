@@ -1,0 +1,25 @@
+# version: "2.1" # Kind of old school and not needed with portainer
+services:
+# Subtitle software tv/movies
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1006
+      - TZ=America/New_York
+    volumes:
+      - /docker-containers/bazarr:/config
+      - /Movies/Main-Library:/movies #optional
+      - /TvShows:/tv #optional
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+    stdin_open: true    # to attach to containers
+    tty: true           # also used to attach to containers
+#    network_mode: service:wireguard     # To run through vpn service container, in turn UI port must be forwarded inside vpn. No local access unless otherwise defined
+    networks:           # Specify network for container
+      - homelab
+networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
+  homelab:
+    external: true      # This option causes compose to join the above network instead of making a _default one (supposedly)
