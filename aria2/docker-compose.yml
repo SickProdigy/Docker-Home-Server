@@ -1,0 +1,36 @@
+---
+services:
+  webui-aria2:
+    image: ndthuan/aria2-alpine
+    container_name: webui-aria2
+    environment:
+      - PUID=1000
+      - PGID=1006
+      - TZ=America/New_York
+    volumes:
+      - /docker-containers/freshrss/config:/config
+      - /unsorted/aria2:/downloads
+      - /docker-containers/aria2:/home/aria/.aria2
+    ports:
+      - 6800:6800
+      - 9100:8080
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    networks:
+      - homelab
+
+  httpd:
+    image: busybox
+    volumes:
+        - ./:/usr/html
+    ports:
+        - "80:80"
+    command: /bin/busybox httpd -f -p 80 -h /usr/html
+    networks:
+      - homelab
+
+networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
+  homelab:
+    name: homelab      # Networks can also be given a custom name
+    external: true      # This option causes compose to join the above network instead of making a _default one
