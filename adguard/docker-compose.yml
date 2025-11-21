@@ -1,0 +1,74 @@
+# Version isn't needed for docker CLI since 2020
+# All 2.x and 3.x features are supported
+# V1 EOL June 2023
+---
+#version: "2.1" #needed if you want ipv6 supposedly
+services:
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguardhome
+    environment:
+      - PUID=1000
+      - PGID=1006
+    volumes:
+      #Old Locations
+      #- /docker-containers/adguard/conf:/opt/adguardhome/conf
+      #- /docker-containers/adguard/work:/opt/adguardhome/work
+      #- /docker-containers/swag-letsencrypt/keys/letsencrypt/fullchain.pem:/opt/adguardhome/certs/fullchain.pem:r
+      #- /docker-containers/swag-letsencrypt/keys/letsencrypt/privkey.pem:/opt/adguardhome/certs/privkey.pem:r
+      - /docker-containers/adguard/conf:/opt/adguardhome/conf
+      - /docker-containers/adguard/work:/opt/adguardhome/work
+      #- /docker-containers/swag-letsencrypt/keys/letsencrypt/fullchain.pem:/opt/adguardhome/certs/fullchain.pem:r # sometimes perm for file is root
+      - /docker-containers/swag-letsencrypt/etc/letsencrypt/live/example.com/fullchain.pem:/opt/adguardhome/certs/fullchain.pem:r
+      #- /docker-containers/swag-letsencrypt/keys/letsencrypt/privkey.pem:/opt/adguardhome/certs/privkey.pem:r
+      - /docker-containers/swag-letsencrypt/etc/letsencrypt/live/example.com/privkey.pem:/opt/adguardhome/certs/privkey.pem:r
+    ports:
+        # DNS
+        - 53:53
+        # # DHCP server
+        #- 67:67/udp
+        #- 68:68/tcp
+        #- 68:68/udp
+        - 8599:80/tcp  # Dns over https through http
+       # # HTTPS/DNS-over-HTTPS
+        - 444:443/tcp
+       # # DNS-over-TLS
+        - 853:853/tcp
+       # # DNS-over-QUIC
+        - 784:784/udp
+       # # DNSCrypt
+        - 5443:5443/tcp
+        - 5443:5443/udp
+       # # WebUI
+        - 3000:3000/tcp
+    restart: unless-stopped
+    stdin_open: true    # to attach to containers
+    tty: true           # also used to attach to containers
+#    network_mode: service:wireguard     # To run through vpn service container, in turn UI port must be forwarded inside vpn. No local access unless otherwise defined
+    networks:           # Specify network for container
+      mcprodnet:
+        ipv4_address: 192.168.1.169
+        #ipv6_address: 2605:a601:a627:100:2::1 # ip changed
+#        ipv6_address: 2605:a601:9132:d100:2::1 # newer, private setup within your network is better though fe:etc
+#        ipv6_address: 2001:3200:3200::20  # disabled because google fiber is shit and always changing and no way to update here
+      homelab:
+        aliases:
+          - adguard # adding multiple aliases under certain network
+          - adg
+networks:    # specify the network 2x. In service, and in this tag area..
+  homelab:
+    name: homelab      # Networks can also be given a custom name
+    external: true # This option causes compose to join the above network instead of making a _default one
+  mcprodnet:
+    #enable_ipv6: true
+    name: mcprodnet      # We will name the network instead of letting docker do something random
+    # external: true      # This option causes compose to join the above network instead of making a _default one
+    driver: macvlan      # Making the above network macvlan
+    driver_opts:         # driver options to use
+      parent: eno1     # usually eth0 or eth1 but not always, used enp3s0 and enp4s0, had to delete /var/lib/docker/network/files/local-kv.db because phantom network
+    ipam:
+      config:
+        - subnet: "192.168.1.0/24"    #Basically copy router range
+          gateway: "192.168.1.1"      #host will eventually route to router, or just go direct
+#        - subnet: "2605:a601:9132:d100:2::/80" # dual subnet ipv6, has to match router subnet unfortunately for external connections like samsung tv
+#          gateway: "2605:a601:9132:d100:2:ffff:ffff:ffff"      #this needs to be router(ish)
