@@ -1,0 +1,25 @@
+version: "3"
+services:
+  server:
+    image: gitea/gitea:1.25-nightly-rootless # Don't specify newest version, could be breaking changes in the future, apparently breaking changes with nightly...
+    container_name: gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1006
+    restart: always
+    volumes:
+      - /docker-containers/gitea/data:/var/lib/gitea
+      - /docker-containers/gitea/config:/etc/gitea
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3999:3000"  # Once setup for domain port access isn't there anymore locally outside of docker network
+      - "2096:2222"
+    networks:           # Specify network for container
+      homelab:
+        aliases:
+          - giteassh # adding multiple aliases under certain network
+          - git
+networks:
+  homelab:
+    external: true      # This option causes compose to join the above network instead of making a _default one
