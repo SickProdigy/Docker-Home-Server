@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  romm:
+    image: rommapp/romm:latest
+    container_name: romm
+    restart: unless-stopped
+    environment:
+      - DB_HOST=mariadb
+      - DB_NAME=rommdb # Should match MYSQL_DATABASE in mariadb
+      - DB_USER=rommuser # Should match MYSQL_USER in mariadb
+      - DB_PASSWD=YourDBPassword # Should match MYSQL_PASSWORD in mariadb
+      - ROMM_AUTH_SECRET_KEY= # Generate a key with `openssl rand -hex 32`
+      - IGDB_CLIENT_ID=YourAPIClientID # Generate an ID and SECRET in IGDB
+      - IGDB_CLIENT_SECRET=YourAPIClientSecret # https://api-docs.igdb.com/#account-creation
+      # - MOBYGAMES_API_KEY= # https://www.mobygames.com/info/api/
+      - STEAMGRIDDB_API_KEY=YourSteamAPIKey # https://github.com/rommapp/romm/wiki/Generate-API-Keys#steamgriddb
+    volumes:
+      - /docker-containers/romm/romm_resources:/romm/resources # Resources fetched from IGDB (covers, screenshots, etc.)
+      - /docker-containers/romm/romm_redis_data:/redis-data # Cached data for background tasks
+      - /games/EmulatorGames:/romm/library/roms # Your game library
+      - /games/Emulators/Bios:/romm/library/bios # Your game library
+      - /docker-containers/romm/assets:/romm/assets # Uploaded saves, states, etc.
+      - /docker-containers/romm/config:/romm/config # Path where config.yml is stored
+    ports:
+      - 8172:8080
+    networks:
+      homelab:
+        aliases:
+          - emulator  # how to add multiple aliases
+          - rom-emu
+
+networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
+  homelab:            # Sub-section, any network name or 'default' to edit default one created
+    external: true      # This option causes compose to join the above network instead of making a _default one
