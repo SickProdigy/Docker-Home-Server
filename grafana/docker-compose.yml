@@ -1,0 +1,23 @@
+---
+version: "2"
+services:
+  grafana:
+    image: grafana/grafana-oss
+    container_name: grafana
+    volumes:
+      - /docker-containers/grafana/configs:/etc/grafana
+      - /docker-containers/grafana/logs:/var/log/grafana
+      - /docker-containers/grafana/lib:/var/lib/grafana
+      - /docker-containers/grafana/share:/usr/share/grafana
+    ports:
+      - 8409:3000
+    user: '1000'
+    restart: unless-stopped
+    stdin_open: true    # to attach to containers
+    tty: true           # also used to attach to containers
+#    network_mode: service:wireguard     # To run through vpn service container, in turn UI port must be forwarded inside vpn. No local access unless otherwise defined
+    networks:           # Specify network for container
+      - homelab
+networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
+  homelab:
+    external: true      # This option causes compose to join the above network instead of making a _default one (supposedly)
