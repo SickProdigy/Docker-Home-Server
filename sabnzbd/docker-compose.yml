@@ -1,0 +1,25 @@
+---
+version: "2.1"
+services:
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=1000
+      - PGID=1006
+      - TZ=Etc/UTC
+    volumes:
+      - /docker-containers/sabnzbd:/config
+      - /unsorted:/downloads #optional
+
+    ports:
+      - 6780:6780
+    restart: unless-stopped
+    networks:
+      homelab:
+        aliases:
+          - sabnzbd # adding multiple aliases under certain network
+networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
+  homelab:
+    name: homelab      # Networks can also be given a custom name
+    external: true      # This option causes compose to join the above network instead of making a _default one
