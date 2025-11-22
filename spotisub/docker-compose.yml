@@ -1,0 +1,31 @@
+name: spotisub
+services:
+  spotisub:
+    container_name: spotisub
+    environment:
+      - SPOTIPY_CLIENT_ID=SPOTIPYClientID1234 # SpotifyClientID
+      - SPOTIPY_CLIENT_SECRET=SPOTIPYClientSecret1234 # SpotifyClientSecret
+      - SPOTIPY_REDIRECT_URI=http://127.0.0.1:8080/
+      - SUBSONIC_API_HOST=http://172.20.0.29
+      - SUBSONIC_API_PORT=4533
+      - SUBSONIC_API_USER=yourusername
+      - SUBSONIC_API_PASS=ChangeMe123
+    image: "blastbeng/spotisub:latest"
+    restart: always
+    volumes:
+      - "/docker-containers/spotify-playlist-generator/cache:/home/user/spotisub/cache"
+    ports:
+      - 5183:5183
+    healthcheck:
+      test: curl -s http://127.0.0.1:5183/utils/healthcheck | grep -q 'Ok!' || exit 1
+      interval: 30s
+      retries: 20
+      start_period: 30s
+    stdin_open: true    # to attach to containers
+    tty: true           # also used to attach to containers
+#    network_mode: service:wireguard     # To run through vpn service container, in turn UI port must be forwarded inside vpn. No local access unless otherwise defined
+    networks:           # Specify network for container
+      - homelab
+networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
+  homelab:
+    external: true      # This option causes compose to join the above network instead of making a _default one (supposedly)
