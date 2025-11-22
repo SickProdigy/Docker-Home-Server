@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /docker-containers/portainer-ce:/data
+    ports:
+      - 9110:9000        # If referencing by container name for ip, use internal port not external (reverse proxy)
+    stdin_open: true     # docker run -i #interactive
+    tty: true            # docker run -t #ttyl
+    networks:
+      - homelab
+networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
+#  some-network:
+#     aliases:   # Example
+#        - alias1    # Example
+#        - alias3    # Example
+  default:
+  homelab:
+    name: homelab      # Networks can also be given a custom name
+    external: true      # This option causes compose to join the above network instead of making a _default one
