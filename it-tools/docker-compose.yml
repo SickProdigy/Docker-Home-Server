@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  it-tools:
+    image: 'corentinth/it-tools:latest'
+    ports:
+      - '8589:80'
+    restart: unless-stopped
+    container_name: it-tools
+    networks:
+      homelab:
+        aliases:
+          - ittools # adding multiple aliases under certain network
+          - webtools
+networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
+  homelab:
+    name: homelab      # Networks can also be given a custom name
+    external: true      # This option causes compose to join the above network instead of making a _default one
