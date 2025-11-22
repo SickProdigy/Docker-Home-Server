@@ -1,0 +1,18 @@
+version: "2.1"
+services:
+  recyclarr:
+    image: ghcr.io/recyclarr/recyclarr
+    container_name: recyclarr
+    user: 1000:1006
+    volumes:
+      - /docker-containers/recyclarr/config:/config
+    environment:
+      - TZ=America/New_York
+    stdin_open: true
+    tty: true
+    networks:
+      - homelab
+networks:
+  homelab:
+    name: homelab
+    external: true      # This option causes compose to join the above network instead of making a _default one
