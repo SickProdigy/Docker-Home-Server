@@ -1,0 +1,40 @@
+# Update navidrome with spotify ratings as a base for your ratings. Tired of having to reselect 10k+ songs at 2-3 stars and 1-2k at 4-5.
+# just go ahead rate everything and i'll change ratings as I please, and venture out
+# still need good genre entries using beets, arr-scripts, or picard (ofc theres others, those are docker containers i've used)
+
+# preview mode
+# docker compose run sptnr -p
+# specific artist
+# docker compose run sptnr -a artist_id
+# start from index
+# docker compose run sptnr -s INDEX
+# docker exec -it sptnr /bin/bash # no container when not running or exited
+# docker exec -it sptnr bash
+
+version: "3.8"
+
+services:
+  sptnr:
+    container_name: sptnr
+    image: krestaino/sptnr:latest
+    # entrypoint: ["INDEX", "-s"]
+    # command: ["INDEX", "-s"]
+    environment:
+      - NAV_BASE_URL=http://navidrome:4533
+      - NAV_USER=yourusername
+      - NAV_PASS=ChangeMe123
+      - SPOTIFY_CLIENT_ID=SpotifyClientID1234
+      - SPOTIFY_CLIENT_SECRET=SpotifyClientSecret1234
+    # command: grep latest log file and grab index from line containing artist. Have this loop through till finished idk. Could be endless, wasn't working since each log file doesn't go off latest number..
+    volumes:
+      - /docker-containers/sptnr/logs:/usr/src/app/logs
+      - /docker-containers/sptnr:/myconfig
+    # restart: always
+    stdin_open: true    # to attach to containers
+    tty: true           # also used to attach to containers
+#    network_mode: service:wireguard     # To run through vpn service container, in turn UI port must be forwarded inside vpn. No local access unless otherwise defined
+    networks:           # Specify network for container
+      - homelab
+networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
+  homelab:
+    external: true      # This option causes compose to join the above network instead of making a _default one (supposedly)
