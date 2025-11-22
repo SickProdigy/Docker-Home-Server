@@ -1,0 +1,22 @@
+# version: "2.1" # Kind of old school and not needed with portainer
+# tellytv seems to be outdated, please look over to xteve, there's a fork that's still updated
+services:
+# IPTV software to produce on PLEX
+  telly:
+    image: tellytv/telly:dev-ffmpeg
+    container_name: tellytv
+    ports:
+      - "6077:6077"
+    environment:
+      - TZ=America/New_York
+    volumes:
+      - /docker-containers/tellytv/telly.config.toml:/etc/telly/telly.config.toml
+    restart: unless-stopped
+    stdin_open: true    # to attach to containers
+    tty: true           # also used to attach to containers
+#    network_mode: service:wireguard     # To run through vpn service container, in turn UI port must be forwarded inside vpn. No local access unless otherwise defined
+    networks:           # Specify network for container
+      - homelab
+networks:    # specify the network 2x. In service, and in this tag area
+  homelab:
+    external: true      # join the above network instead of making a _default one
