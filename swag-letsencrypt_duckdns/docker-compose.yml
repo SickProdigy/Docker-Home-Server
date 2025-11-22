@@ -1,0 +1,25 @@
+# Nginx webserver and reverse proxy with php support and a built-in Certbot (fail2ban included)
+---
+version: "2.1"
+services:
+  swag:
+    image: lscr.io/linuxserver/swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1003
+      - TZ=America\New_York
+      - URL=example.duckdns.org
+      - SUBDOMAINS=wildcard
+      - VALIDATION=duckdns
+      - DUCKDNSTOKEN=YourDuckDNSToken
+      - EMAIL= your@email.com    # for let's encyrpt
+    volumes:
+      - /docker-containers/swag-letsencrypt_duckdns:/config
+    ports:
+      - 443:443
+      - 80:80
+    restart: unless-stopped
+    network_mode: host
