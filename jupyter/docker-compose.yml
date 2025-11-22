@@ -1,0 +1,17 @@
+jupyter:
+  image: jupyter/datascience-notebook
+  environment:
+    - PASSWORD=${PASSWORD}
+
+
+nginx:  
+  image: nginx
+  links: 
+    - jupyter
+  volumes:
+    - ./nginx.conf:/etc/nginx/nginx.conf
+    - ./letsencrypt.crt:/data/cert.crt
+    - /letsencrypt.key:/data/key.key
+  ports:
+    - 80:80
+    - 443:443
