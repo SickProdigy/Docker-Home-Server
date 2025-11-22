@@ -1,0 +1,40 @@
+---
+version: "2.1"
+services:
+# VPN for connecting other containers or connect remotely to, for privacy
+# This image utilises cap_add or sysctl to work properly. 
+# This is not implemented properly in some versions of Portainer, thus this image may not work if deployed through Portainer.
+  wireguard:
+    image: lscr.io/linuxserver/wireguard:latest
+    container_name: wireguard
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - PUID=1000
+      - PGID=1006
+      - TZ=America/New_York
+      # - SERVERURL=wireguard.example.com #optional ip or domain; can be set to auto
+      - SERVERPORT=8880 #optional
+      - PEERS=1 #optional can be a list, myPC,myPhone,myTablet
+      - PEERDNS=auto #optional default: auto
+      - INTERNAL_SUBNET=10.6.9.0 #optional
+      - ALLOWEDIPS=0.0.0.0/0 #optional
+      #- PERSISTENTKEEPALIVE_PEERS= #optional
+      - LOG_CONFS=true #optional set to false to skip log output
+    volumes:
+      - /docker-containers/wireguard:/config
+      - /lib/modules:/lib/modules #optional
+    ports:
+      - 8880:51820/udp
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: unless-stopped
+#     stdin_open: true    # to attach to containers
+#     tty: true           # also used to attach to containers
+
+#     networks:           # Specify network for container
+#       - homelab
+# networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
+#   homelab:
+#     external: true      # This option causes compose to join the above network instead of making a _default one (supposedly)
