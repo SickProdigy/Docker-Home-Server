@@ -1,0 +1,38 @@
+version: "2.1"
+services:
+  soulseek:
+    image: realies/soulseek
+    container_name: soulseek
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
+    environment:
+      - PUID=1000
+      - PGID=1006
+#      - HTTP_PROXY="http://192.168.1.12:3128"
+#      - HTTPS_PROXY="https://192.168.1.12:3128"
+#      - FTP_PROXY="ftp://192.168.1.12:3128"
+#      - NO_PROXY="192.168.0.*,.example2.com,*.example3.com"
+    volumes:
+      - "/docker-containers/soulseek/data:/data/.SoulseekQt" #Appdata
+      - "/docker-containers/soulseek/config:/data/.config" #Config?
+      - "/docker-containers/soulseek/logs:/data/Soulseek Chat Logs" #Logs
+      - "/Music:/data/Soulseek Music" #Shared Music Folder
+      - "/unsorted/soulseek:/data/Soulseek Downloads" #Shared Downloads folder
+      - "/Movies:/data/Soulseek Movies" #Shared Movies folder
+      - "/TvShows:/data/Soulseek TvShows" #Shared TvShows folder
+      - "/Videos:/data/Soulseek Videos" #Shared Videos folder
+      - "/programs:/data/Soulseek Programs" #Shared Programs folder
+      - "/games:/data/Soulseek Games" #Shared Games folder
+      - "/Books:/data/Soulseek Books" #Shared Books folder
+    ports:
+      - 6090:6080
+    restart: unless-stopped
+    stdin_open: true    # to attach to containers
+    tty: true           # also used to attach to containers
+#    network_mode: service:wireguard     # To run through vpn service container, in turn UI port must be forwarded inside vpn. No local access unless otherwise defined
+    networks:           # Specify network for container
+      - homelab
+networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
+  homelab:
+
+    external: true      # This option causes compose to join the above network instead of making a _default one (supposedly)
