@@ -1,0 +1,41 @@
+# Use postgres/example user/password credentials
+version: '3.9'
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    environment:
+      POSTGRES_USER: yourusername
+      POSTGRES_PASSWORD: PostgresChangeMe123!
+    volumes:
+      # Mount the folder where your PostgreSQL database files should land
+      - /docker-containers/postgres/db:/var/lib/postgresql/data
+    networks:
+      homelab:
+        aliases:
+          - postgress  # how to add multiple aliases
+          - postgressql
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - 8389:8080
+    networks:
+      homelab:
+        aliases:
+          - postgresgui  # how to add multiple aliases
+
+networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
+  homelab:            # Sub-section, any network name or 'default' to edit default one created
+    external: true      # This option causes compose to join the above network instead of making a _default one
