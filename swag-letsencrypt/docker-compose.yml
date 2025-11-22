@@ -1,0 +1,34 @@
+# Nginx webserver and reverse proxy with php support and a built-in Certbot (fail2ban included)
+---
+version: "3.0"
+services:
+  swag:
+    image: lscr.io/linuxserver/swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1006
+      - TZ=America/New_York
+      - CERTPROVIDER=letsencrypt     # letsencrypt or zerossl, zerossl has issues and allows ips
+      - URL=example.com
+      - SUBDOMAINS=wildcard
+      - VALIDATION=dns      # Options: acme, dns, duckduckdns
+      - DNSPLUGIN=cloudflare     # api key in ~/dns-conf
+      - EMAIL=your@email.com     # for let's encrypt
+      - EXTRA_DOMAINS=gitea.exampledomain2.com,uploads.exampledomain2.com     # 192.168.1.22,136.56.13.112 # internal and external ip only works with sslcert
+    volumes:
+      - /docker-containers/swag-letsencrypt:/config
+    ports:
+      - 443:443
+      - 80:80
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    networks:
+      - homelab
+networks:
+  homelab:
+    name: homelab      # Network custom name
+    external: true      # join the above network, no _default one... wont work without it though..
