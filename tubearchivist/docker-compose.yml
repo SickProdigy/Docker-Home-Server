@@ -12,12 +12,13 @@ services:
     volumes:
       - /Videos/TubeArchivist:/youtube
       - /docker-containers/tubearchivist/cache:/cache
+      - /docker-containers/tubearchivist/nginx/default:/etc/nginx/sites-available/default:ro
     environment:
       - ES_URL=http://elasticsearch:9200     # needs protocol e.g. http and port
       - REDIS_CON=redis://archivist-redis:6379          # don't add protocol
       - HOST_UID=1000
       - HOST_GID=1006
-      - TA_HOST=https://youtube.example.com https://tubearchivist.example.com https://yt.example.com http://192.168.1.239:8111     #     set your host name
+      - TA_HOST=https://youtube.example.com https://tubearchivist.example.com https://yt.example.com http://192.168.1.239:8111 http://tubearchivist:8000     #     set your host name
       # - TA_PORT=8111      # to change default port nginx listens
       - TA_USERNAME=tubearchivist           # your initial TA credentials
       - TA_PASSWORD=ChangeMe123              # your initial TA credentials
@@ -42,7 +43,10 @@ services:
           - yt # adding multiple aliases under certain network
           - youtube
           - ytdl
-  # should redis be using elasticsearch? maybe that's why they were together?
+      tubearchivist_redis_net:
+        aliases:
+          - tubearchivist-local
+  # redis container for tubearchivist
   archivist-redis:
     image: redis
     container_name: archivist-redis
@@ -54,7 +58,7 @@ services:
     # depends_on:
     #   - archivist-es
     networks:           # Specify network for container
-      -  homelab
+      -  tubearchivist_redis_net
 
   # Disabled because running independently, just want the dang kibana to work also. 
   # archivist-es:
@@ -79,3 +83,5 @@ services:
 networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
   homelab:
     external: true      # This option causes compose to join the above network instead of making a _default one (supposedly) also forces to join instead of creating one
+  tubearchivist_redis_net:
+    external: false
