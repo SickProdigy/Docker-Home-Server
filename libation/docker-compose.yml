@@ -1,0 +1,15 @@
+# libation - for editing drm audio files to normal
+---
+version: "2.1"
+services:
+  libation:
+    image: rmcrackan/libation
+    container_name: libation
+    environment:
+      - SLEEP_TIME=10m # 10m or -1 for scan 1 and download stop
+    volumes:
+      - /docker-containers/libation/config:/config
+      - /Books/test:/data
+      - /unsorted/libation:/tmp
+    restart: always
+
