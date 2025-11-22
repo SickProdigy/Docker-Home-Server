@@ -1,0 +1,20 @@
+# Running `docker-compose up` will create/use the "trilium-data" directory in the user home
+# Run `TRILIUM_DATA_DIR=/path/of/your/choice docker-compose up` to set a different directory
+version: '2.1'
+services:
+  trilium:
+    container_name: trilium
+    image: zadam/trilium
+    restart: always
+    environment:
+      - TRILIUM_DATA_DIR=/home/node/trilium-data
+    ports:
+      - "8712:8080"
+    volumes:
+      - /docker-containers/trilium:/home/node/trilium-data
+    networks:           # Specify network for container
+      -  homelab
+
+networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
+  homelab:
+    external: true      # This option causes compose to join the above network instead of making a _default one (supposedly) also forces to join instead of creating one
