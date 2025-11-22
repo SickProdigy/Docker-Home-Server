@@ -1,0 +1,31 @@
+version: "2.1"
+services:
+# Kometa / Plex Collections Manager | Formerly "Plex Meta Manager"
+  kometa:
+    image: kometateam/kometa:latest  # meisnate12/plex-meta-manager:nightly rebranded as kometa # lscr.io/linuxserver/plex-meta-manager:latest
+    container_name: kometa
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    environment:
+      - PUID=1000
+      - PGID=1006
+      - TZ=America/New_York
+      - KOMETA_CONFIG=/config/config.yml #optional
+      - KOMETA_TIME=23:15 #optional
+      # - KOMETA_RUN=true #optional
+      # - KOMETA_TEST=False #optional
+      # - KOMETA_NO_MISSING=False #optional
+    volumes:
+      - /docker-containers/kometa:/config:rw
+    entrypoint:
+      - python3
+      - kometa.py
+    restart: unless-stopped
+    stdin_open: true    # to attach to containers
+    tty: true           # also used to attach to containers
+#    network_mode: service:wireguard     # To run through vpn service container, in turn UI port must be forwarded inside vpn. No local access unless otherwise defined
+    networks:           # Specify network for container
+      - homelab
+networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
+  homelab:
+    external: true      # This option causes compose to join the above network instead of making a _default one (supposedly)
