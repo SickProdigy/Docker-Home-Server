@@ -1,0 +1,16 @@
+version: '2'
+services: 
+ mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883/tcp"
+    environment:
+      - TZ=American/New_York
+    volumes:
+      - /docker-containers/mosquitto-eclipse:/mosquitto/config
+      - /docker-containers/mosquitto-eclipse/data:/mosquitto/data
+      - /docker-containers/mosquitto-eclipse/log:/mosquitto/log
+    stdin_open: true
+    tty: true
