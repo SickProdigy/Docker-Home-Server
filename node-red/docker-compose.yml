@@ -1,0 +1,26 @@
+################################################################################
+# Node-RED Stack or Compose
+################################################################################
+# docker stack deploy node-red --compose-file docker-compose-node-red.yml
+# docker-compose -f docker-compose-node-red.yml -p myNoderedProject up
+################################################################################
+version: "3.7"
+
+services:
+  node-red:
+    image: nodered/node-red:latest
+    #image: nodered/node-red:2.2.3-12@sha256:051cdb78937b7396d5be102e575b3b47322bfa48efad5aeb0d86d0a3bef22d22   // armv7 version works for raspberry pi, apparently isn't very good at seeing whether 32 or 64 bit
+    environment:
+      - TZ=America/New_York
+    ports:
+      - "1880:1880"
+    networks:
+      - node-red-net
+    volumes:
+      - /docker-containers/node-red:/data
+
+volumes:
+  node-red-data:
+
+networks:
+  node-red-net:
