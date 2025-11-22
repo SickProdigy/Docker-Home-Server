@@ -1,0 +1,8 @@
+version: "2"
+services:
+  shoutrrr:
+    image: containrrr/shoutrrr 
+    container_name: shoutrrr
+    environment: 
+      - TZ=America/New_York 
+    restart: unless-stopped
