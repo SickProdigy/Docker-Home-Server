@@ -1,0 +1,37 @@
+version: '2.1'
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    volumes:
+      - /docker-containers/homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+#    depends_on:
+#      - mosquitto
+    privileged: true
+    stdin_open: true    # to attach to containers
+    tty: true           # also used to attach to containers
+    networks:           # Specify network for container
+      - homelab
+
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    restart: unless-stopped
+    ports:
+      - "1883:1883/tcp"
+    environment:
+      - TZ=American/New_York
+    volumes:
+      - /docker-containers/mosquitto-eclipse:/mosquitto/config
+      - /docker-containers/mosquitto-eclipse/data:/mosquitto/data
+      - /docker-containers/mosquitto-eclipse/log:/mosquitto/log
+    stdin_open: true    # to attach to containers
+    tty: true           # also used to attach to containers
+#    network_mode: service:wireguard     # To run through vpn service container, in turn UI port must be forwarded inside vpn. No local access unless otherwise defined
+    networks:           # Specify network for container
+      - homelab
+networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
+  homelab:
+    external: true      # This option causes compose to join the above network instead of making a _default one 
