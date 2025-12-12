@@ -131,6 +131,8 @@ Welcome to my home server development repository! Over the past 4-5 years, I’v
    *Social media scheduling platform.*
 - [mkvtoolnix](./docker-compose/mkvtoolnix)  
    *Tools for working with Matroska media files.*
+- [mongodb](./docker-compose/mongodb)  
+   *NoSQL document database.*
 - [mosquitto-eclipse](./docker-compose/mosquitto-eclipse)  
    *MQTT broker for IoT messaging.*
 - [musicbrainz](./docker-compose/musicbrainz)  
