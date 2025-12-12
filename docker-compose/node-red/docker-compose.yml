@@ -9,18 +9,21 @@ version: "3.7"
 services:
   node-red:
     image: nodered/node-red:latest
+    container_name: node-red
     #image: nodered/node-red:2.2.3-12@sha256:051cdb78937b7396d5be102e575b3b47322bfa48efad5aeb0d86d0a3bef22d22   // armv7 version works for raspberry pi, apparently isn't very good at seeing whether 32 or 64 bit
     environment:
       - TZ=America/New_York
+      - NODE_RED_CREDENTIAL_SECRET=YourEncryptedString
     ports:
       - "1880:1880"
-    networks:
-      - node-red-net
     volumes:
-      - /docker-containers/node-red:/data
+      - /docker-containers/node-red/data:/data
+    networks:
+      homelab:
+        aliases:
+          - nodered
+networks:    # I don't know why but you have to specify the network 2x. In service, and in this tag area..
+  homelab:
+    name: homelab      # Networks can also be given a custom name
+    external: true      # This option causes compose to join the above network instead of making a _default one
 
-volumes:
-  node-red-data:
-
-networks:
-  node-red-net:
