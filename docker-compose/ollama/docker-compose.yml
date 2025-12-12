@@ -6,13 +6,20 @@ services:
     volumes:
       - /docker-containers/ollama/code:/code
       - /docker-containers/ollama/data:/root/.ollama
+      # - /usr/local/cuda:/usr/local/cuda:ro      # <-- mount CUDA runtime from host maybe
     container_name: ollama
-    pull_policy: always
     tty: true
     restart: always
     environment:
       - OLLAMA_KEEP_ALIVE=24h
       - OLLAMA_HOST=0.0.0.0
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    # devices:
+    #   - /dev/nvidia0:/dev/nvidia0
+    #   - /dev/nvidiactl:/dev/nvidiactl
+    #   - /dev/nvidia-uvm:/dev/nvidia-uvm
+    runtime: nvidia
     networks:
       - homelab
 
