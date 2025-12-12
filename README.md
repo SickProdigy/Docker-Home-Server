@@ -3,242 +3,276 @@
 
 Welcome to my home server development repository! Over the past 4-5 years, I’ve tested a wide variety of Docker containers for self-hosting and automation. This repo collects the containers I’ve found most useful, though some may be missing or not actively maintained. My goal is to organize each container into its own folder with a `docker-compose.yml` for easy setup and backup. Some configurations contain private information and will be refined before public release.
 
-Below is a list of containers I’ve tested and recommend for various home server tasks.
-
 - [adguard](./docker-compose/adguard)  
-  *Network-wide ad blocker and privacy protection.*
+   *Network-wide ad blocker and privacy protection.*
+- [airdcpp](./docker-compose/airdcpp)  
+   *Advanced Direct Connect client.*
 - [amule](./docker-compose/amule)  
-  *Peer-to-peer file sharing client for the eDonkey network.*
+   *Peer-to-peer file sharing client for the eDonkey network.*
 - [apprise](./docker-compose/apprise)  
-  *Unified notification service for multiple platforms.*
+   *Unified notification service for multiple platforms.*
+- [aria2](./docker-compose/aria2)  
+   *Lightweight multi-protocol & multi-source command-line download utility.*
 - [audiobookshelf](./docker-compose/audiobookshelf)  
-  *Self-hosted audiobook server and web player.*
+   *Self-hosted audiobook server and web player.*
 - [authelia](./docker-compose/authelia)  
-  *Authentication and authorization server for your applications.*
+   *Authentication and authorization server for your applications.*
 - [bazarr](./docker-compose/bazarr)  
-  *Subtitle management for Radarr and Sonarr.*
+   *Subtitle management for Radarr and Sonarr.*
 - [beets](./docker-compose/beets)  
-  *Music library organizer and tagger.*
+   *Music library organizer and tagger.*
+- [btcpayserver](./docker-compose/btcpayserver)  
+   *Self-hosted Bitcoin payment processor.*
 - [calibre](./docker-compose/calibre)  
-  *E-book management software.*
+   *E-book management software.*
 - [calibre-web](./docker-compose/calibre-web)  
-  *Web-based interface for Calibre e-book library.*
+   *Web-based interface for Calibre e-book library.*
 - [chd-converter](./docker-compose/chd-converter)  
-  *Tool for converting playstation disk images to CHD format.*
+   *Tool for converting PlayStation disk images to CHD format.*
 - [code-server](./docker-compose/code-server)  
-  *VS Code running on a remote server accessible through the browser.*
+   *VS Code running on a remote server accessible through the browser.*
+- [dashy](./docker-compose/dashy)  
+   *Self-hosted dashboard app for organizing links and services.*
 - [ddclient](./docker-compose/ddclient)  
-  *Dynamic DNS update client.*
+   *Dynamic DNS update client.*
 - [deemix](./docker-compose/deemix)  
-  *Music downloader for Deezer.*
+   *Music downloader for Deezer.*
 - [deluge](./docker-compose/deluge)  
-  *Lightweight, open-source BitTorrent client.*
+   *Lightweight, open-source BitTorrent client.*
 - [dillinger](./docker-compose/dillinger)  
-  *Online Markdown editor.*
+   *Online Markdown editor.*
 - [doublecommander](./docker-compose/doublecommander)  
-  *Cross-platform file manager.*
+   *Cross-platform file manager.*
 - [elasticsearch](./docker-compose/elasticsearch)  
-  *Distributed search and analytics engine.*
+   *Distributed search and analytics engine.*
 - [filebrowser](./docker-compose/filebrowser)  
-  *Web-based file manager for your server.*
+   *Web-based file manager for your server.*
+- [filedrop](./docker-compose/filedrop)  
+   *Simple file sharing app.*
+- [filegator](./docker-compose/filegator)  
+   *Web-based file manager.*
 - [flaresolverr](./docker-compose/flaresolverr)  
-  *Proxy server to bypass Cloudflare protection.*
+   *Proxy server to bypass Cloudflare protection.*
+- [foundryvtt](./docker-compose/foundryvtt)  
+   *Virtual Tabletop for RPGs.*
+- [freshrss](./docker-compose/freshrss)  
+   *Self-hosted RSS feed aggregator.*
 - [gamevault](./docker-compose/gamevault)  
-  *Game library manager.*
+   *Game library manager.*
 - [gameyfin](./docker-compose/gameyfin)  
-  *Game streaming server.*
+   *Game streaming server.*
+- [ghostfolio](./docker-compose/ghostfolio)  
+   *Personal finance management.*
 - [gitea](./docker-compose/gitea)  
-  *Self-hosted Git service.*
+   *Self-hosted Git service.*
 - [glances](./docker-compose/glances)  
-  *System monitoring tool.*
+   *System monitoring tool.*
 - [gluetun](./docker-compose/gluetun)  
-  *VPN client for Docker containers.*
+   *VPN client for Docker containers.*
 - [gmod](./docker-compose/gmod)  
-  *Garry's Mod game server.*
+   *Garry's Mod game server.*
 - [grafana](./docker-compose/grafana)  
-  *Analytics and monitoring dashboard.*
+   *Analytics and monitoring dashboard.*
 - [grifter](./docker-compose/grifter)  
-  *Automation and scripting tool.*
+   *Automation and scripting tool.*
 - [headphones](./docker-compose/headphones)  
-  *Music download manager for Usenet and torrents.*
+   *Music download manager for Usenet and torrents.*
 - [heimdall](./docker-compose/heimdall)  
-  *Application dashboard for your server.*
+   *Application dashboard for your server.*
 - [homarr](./docker-compose/homarr)  
-  *Modern dashboard for managing your home server.*
+   *Modern dashboard for managing your home server.*
 - [homeassistant](./docker-compose/homeassistant)  
-  *Open-source home automation platform.*
+   *Open-source home automation platform.*
 - [homebridge](./docker-compose/homebridge)  
-  *HomeKit support for non-Apple devices.*
+   *HomeKit support for non-Apple devices.*
 - [immich](./docker-compose/immich)  
-  *Self-hosted photo and video backup solution.*
+   *Self-hosted photo and video backup solution.*
+- [iptv-org-epg](./docker-compose/iptv-org-epg)  
+   *EPG for IPTV.*
+- [it-tools](./docker-compose/it-tools)  
+   *Handy web-based tools for developers.*
 - [jackett](./docker-compose/jackett)  
-  *API support for torrent indexers.*
+   *API support for torrent indexers.*
 - [jdownloader](./docker-compose/jdownloader)  
-  *Download manager for various file hosts.*
+   *Download manager for various file hosts.*
 - [jellyfin](./docker-compose/jellyfin)  
-  *Open-source media server.*
+   *Open-source media server.*
 - [joplin](./docker-compose/joplin)  
-  *Note-taking and to-do application.*
+   *Note-taking and to-do application.*
 - [jupyter](./docker-compose/jupyter)  
-  *Interactive notebooks for code and data.*
+   *Interactive notebooks for code and data.*
+- [karakeep](./docker-compose/karakeep)  
+   *Self-hosted note-taking app.*
 - [kometa](./docker-compose/kometa)  
-  *Media library metadata manager.*
+   *Media library metadata manager.*
+- [lancommander](./docker-compose/lancommander)  
+   *LAN party management tool.*
 - [lazylibrarian](./docker-compose/lazylibrarian)  
-  *Book download and management tool.*
+   *Book download and management tool.*
 - [libation](./docker-compose/libation)  
-  *Audiobook downloader and manager.*
+   *Audiobook downloader and manager.*
 - [lidarr](./docker-compose/lidarr)  
-  *Music collection manager for Usenet and torrents.*
+   *Music collection manager for Usenet and torrents.*
 - [mailcow](./docker-compose/mailcow)  
-  *Self-hosted mail server suite.*
+   *Self-hosted mail server suite.*
 - [mailserver](./docker-compose/mailserver)  
-  *General purpose mail server.*
+   *General purpose mail server.*
 - [mariadb](./docker-compose/mariadb)  
-  *Open-source relational database.*
-- [mastadon](./docker-compose/mastadon)  
-  *Decentralized social network server.*
+   *Open-source relational database.*
 - [mastodon](./docker-compose/mastodon)  
-  *Decentralized social network server.*
+   *Decentralized social network server.*
 - [mealie](./docker-compose/mealie)  
-  *Recipe management and meal planning.*
+   *Recipe management and meal planning.*
 - [mediacms](./docker-compose/mediacms)  
-  *Open-source media content management system.*
+   *Open-source media content management system.*
 - [minecraft-paper_itzg](./docker-compose/minecraft-paper_itzg)  
-  *Minecraft Paper server by itzg.*
+   *Minecraft Paper server by itzg.*
+- [mixpost](./docker-compose/mixpost)  
+   *Social media scheduling platform.*
 - [mkvtoolnix](./docker-compose/mkvtoolnix)  
-  *Tools for working with Matroska media files.*
-- [mongodb](./docker-compose/mongodb)  
-  *NoSQL document database.*
+   *Tools for working with Matroska media files.*
 - [mosquitto-eclipse](./docker-compose/mosquitto-eclipse)  
-  *MQTT broker for IoT messaging.*
+   *MQTT broker for IoT messaging.*
 - [musicbrainz](./docker-compose/musicbrainz)  
-  *Open music encyclopedia database.*
+   *Open music encyclopedia database.*
 - [n8n](./docker-compose/n8n)  
-  *Workflow automation tool.*
+   *Workflow automation tool.*
 - [navidrome](./docker-compose/navidrome)  
-  *Music streaming server.*
+   *Music streaming server.*
 - [netbootxyz](./docker-compose/netbootxyz)  
-  *Network boot server for OS installations.*
+   *Network boot server for OS installations.*
 - [nginxproxymanager](./docker-compose/nginxproxymanager)  
-  *Web proxy management with a GUI.*
+   *Web proxy management with a GUI.*
+- [nicotineplus](./docker-compose/nicotineplus)  
+   *Soulseek client. Download music, tv, movies, ebooks, and more.*
 - [node-red](./docker-compose/node-red)  
-  *Flow-based programming for IoT.*
+   *Flow-based programming for IoT.*
 - [nostr-relay](./docker-compose/nostr-relay)  
-  *Relay server for Nostr protocol.*
+   *Relay server for Nostr protocol.*
 - [notifiarr](./docker-compose/notifiarr)  
-  *Notification integration for media servers.*
+   *Notification integration for media servers.*
 - [nzbget](./docker-compose/nzbget)  
-  *Usenet downloader.*
+   *Usenet downloader.*
+- [ollama](./docker-compose/ollama)  
+   *Run large language models locally.*
 - [ombi](./docker-compose/ombi)  
-  *Media request management for Plex/Emby/Jellyfin.*
+   *Media request management for Plex/Emby/Jellyfin.*
+- [omni-tools](./docker-compose/omni-tools)  
+   *Collection of useful tools.*
 - [open-assistant](./docker-compose/open-assistant)  
-  *Open-source AI assistant.*
+   *Open-source AI assistant.*
+- [open-webui](./docker-compose/open-webui)  
+   *Web UI for LLMs.*
 - [openbooks](./docker-compose/openbooks)  
-  *Book search and download tool.*
+   *Book search and download tool.*
 - [organizr](./docker-compose/organizr)  
-  *Unified web interface for your services.*
+   *Unified web interface for your services.*
 - [paperless-ng](./docker-compose/paperless-ng)  
-  *Document management system.*
+   *Document management system.*
 - [phpmyadmin](./docker-compose/phpmyadmin)  
-  *Web-based MySQL/MariaDB administration.*
+   *Web-based MySQL/MariaDB administration.*
 - [picard](./docker-compose/picard)  
-  *Music tagger by MusicBrainz.*
+   *Music tagger by MusicBrainz.*
 - [pidgin](./docker-compose/pidgin)  
-  *Multi-protocol chat client.*
+   *Multi-protocol chat client.*
 - [plex](./docker-compose/plex)  
-  *Media server for streaming your content.*
+   *Media server for streaming your content.*
 - [plex-image-cleanup](./docker-compose/plex-image-cleanup)  
-  *Tool to clean up Plex image cache.*
+   *Tool to clean up Plex image cache.*
 - [pms-docker](./docker-compose/pms-docker)  
-  *Plex Media Server Docker image.*
+   *Plex Media Server Docker image.*
 - [podgrab](./docker-compose/podgrab)  
-  *Podcast downloader and manager.*
-- [portainer](./docker-compose/portainer)  
-  *Docker management GUI.*
+   *Podcast downloader and manager.*
 - [portainer-be](./docker-compose/portainer-be)  
-  *Portainer backend service.*
+   *Portainer backend service.*
 - [portainer-ce](./docker-compose/portainer-ce)  
-  *Portainer Community Edition.*
-- [postgres_data](./docker-compose/postgres_data)  
-  *PostgreSQL database data container.*
+   *Portainer Community Edition.*
+- [postgres](./docker-compose/postgres)  
+   *PostgreSQL database.*
+- [postiz](./docker-compose/postiz)  
+   *Post management tool.*
 - [prometheus](./docker-compose/prometheus)  
-  *Monitoring and alerting toolkit.*
+   *Monitoring and alerting toolkit.*
 - [prowlarr](./docker-compose/prowlarr)  
-  *Indexer manager for Usenet and torrents.*
+   *Indexer manager for Usenet and torrents.*
 - [qbittorrent](./docker-compose/qbittorrent)  
-  *Open-source BitTorrent client.*
+   *Open-source BitTorrent client.*
 - [radarr](./docker-compose/radarr)  
-  *Movie collection manager for Usenet and torrents.*
+   *Movie collection manager for Usenet and torrents.*
 - [rainloop](./docker-compose/rainloop)  
-  *Webmail client.*
+   *Webmail client.*
 - [readarr](./docker-compose/readarr)  
-  *Book collection manager for Usenet and torrents.*
+   *Book collection manager for Usenet and torrents.*
+- [readarr-audio](./docker-compose/readarr-audio)  
+   *Audio book collection manager.*
 - [recyclarr](./docker-compose/recyclarr)  
-  *Syncs trash/recycle settings for media managers.*
-- [requestrr](./docker-compose/requestrr)  
-  *Discord bot for media requests.*
+   *Syncs trash/recycle settings for media managers.*
 - [romm](./docker-compose/romm)  
-  *Retro game manager.*
+   *Retro game manager.*
 - [romvault](./docker-compose/romvault)  
-  *ROM management and auditing tool.*
+   *ROM management and auditing tool.*
 - [sabnzbd](./docker-compose/sabnzbd)  
-  *Usenet binary downloader.*
+   *Usenet binary downloader.*
+- [searxng](./docker-compose/searxng)  
+   *Privacy-respecting metasearch engine.*
 - [shoutrrr](./docker-compose/shoutrrr)  
-  *Notification library for various services.*
+   *Notification library for various services.*
+- [sociaboard](./docker-compose/sociaboard)  
+   *Social media management platform.*
 - [sonarr](./docker-compose/sonarr)  
-  *TV series collection manager for Usenet and torrents.*
+   *TV series collection manager for Usenet and torrents.*
 - [soulseek](./docker-compose/soulseek)  
-  *Peer-to-peer music sharing client.*
+   *Peer-to-peer music sharing client.*
 - [spotify-playlist-generator](./docker-compose/spotify-playlist-generator)  
-  *Tool to generate Spotify playlists.*
+   *Tool to generate Spotify playlists.*
 - [spotisub](./docker-compose/spotisub)  
-  *Spotify playlist subscription manager.*
+   *Spotify playlist subscription manager.*
 - [sptnr](./docker-compose/sptnr)  
-  *Spotify playlist and library manager.*
+   *Spotify playlist and library manager.*
 - [swag-letsencrypt](./docker-compose/swag-letsencrypt)  
-  *Secure Web Application Gateway with Let's Encrypt.*
+   *Secure Web Application Gateway with Let's Encrypt.*
 - [swag-letsencrypt_duckdns](./docker-compose/swag-letsencrypt_duckdns)  
-  *SWAG with DuckDNS integration.*
+   *SWAG with DuckDNS integration.*
 - [tautulli](./docker-compose/tautulli)  
-  *Plex usage monitoring and analytics.*
+   *Plex usage monitoring and analytics.*
 - [tdarr](./docker-compose/tdarr)  
-  *Distributed media transcoding system.*
+   *Distributed media transcoding system.*
 - [tellytv](./docker-compose/tellytv)  
-  *IPTV proxy for Plex.*
+   *IPTV proxy for Plex.*
 - [traefik](./docker-compose/traefik)  
-  *Modern reverse proxy and load balancer.*
+   *Modern reverse proxy and load balancer.*
 - [trilium](./docker-compose/trilium)  
-  *Hierarchical note-taking application.*
+   *Hierarchical note-taking application.*
 - [tubearchivist](./docker-compose/tubearchivist)  
-  *YouTube archiving and management tool.*
+   *YouTube archiving and management tool.*
 - [tvheadend](./docker-compose/tvheadend)  
-  *TV streaming server for DVB, ATSC, IPTV.*
+   *TV streaming server for DVB, ATSC, IPTV.*
 - [unpackerr](./docker-compose/unpackerr)  
-  *Automated extraction of archives for media managers.*
+   *Automated extraction of archives for media managers.*
+- [vocechat](./docker-compose/vocechat)  
+   *Self-hosted chat platform.*
 - [vscodium](./docker-compose/vscodium)  
-  *Open-source build of VS Code.*
+   *Open-source build of VS Code.*
 - [watchtower](./docker-compose/watchtower)  
-  *Automatic update for Docker containers.*
-- [web-dev-compose.yml](./docker-compose/web-dev-compose.yml)  
-  *Web development Docker Compose setup.*
+   *Automatic update for Docker containers.*
 - [webgrabplus](./docker-compose/webgrabplus)  
-  *EPG (Electronic Program Guide) grabber.*
+   *EPG (Electronic Program Guide) grabber.*
 - [wg-easy](./docker-compose/wg-easy)  
-  *Simple WireGuard VPN management.*
+   *Simple WireGuard VPN management.*
 - [whisper-webui](./docker-compose/whisper-webui)  
-  *Web UI for OpenAI Whisper speech-to-text.*
+   *Web UI for OpenAI Whisper speech-to-text.*
 - [wireguard](./docker-compose/wireguard)  
-  *Fast, modern VPN tunnel.*
+   *Fast, modern VPN tunnel.*
 - [wireshark](./docker-compose/wireshark)  
-  *Network protocol analyzer.*
+   *Network protocol analyzer.*
 - [xbackbone](./docker-compose/xbackbone)  
-  *File sharing and image hosting platform.*
+   *File sharing and image hosting platform.*
 - [xteve](./docker-compose/xteve)  
-  *IPTV proxy for Plex and Emby.*
+   *IPTV proxy for Plex and Emby.*
 - [youtube-dl-material](./docker-compose/youtube-dl-material)  
-  *Web UI for youtube-dl downloads.*
+   *Web UI for youtube-dl downloads.*
 - [youtube-dl-server](./docker-compose/youtube-dl-server)  
-  *REST API for youtube-dl.*
+   *REST API for youtube-dl.*
 
 ## How To Use This Repo
 
